@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // gets all the blogs
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 app.use(blogRoutes);
 
 app.use((req, res) => {
