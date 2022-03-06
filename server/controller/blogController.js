@@ -21,14 +21,17 @@ const blog_details = (req, res) => {
     });
 };
 
-const blog_create_post = (req, res) => {
-  console.log(req.body);
+const blog_create_post = async (req, res) => {
   const blog = new Blog(req.body);
 
-  blog
+  await blog
     .save()
-    .then(() => {})
-    .catch((err) => console.log(err));
+    .then(() => {
+      res.status(200).send("success");
+    })
+    .catch((err) => {
+      return res.status(400).send(err);
+    });
 };
 
 const blog_delete = (req, res) => {

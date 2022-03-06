@@ -201,3 +201,24 @@ body {
   top: 0;
   right: 0;
 }
+
+@media (max-width: 500px) {
+  .navbar {
+    margin: 0;
+  }
+  .navbar h1 {
+    font-size: 40px;
+  }
+
+  .navbar a {
+    padding: 3px 6px;
+  }
+
+  .links-flex {
+    gap: 3px;
+  }
+
+  .details-container {
+    margin: 20px 20px 20px 0px;
+  }
+}

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     name: "",
     author: "",
@@ -17,7 +20,7 @@ const Create = () => {
     e.preventDefault();
 
     try {
-      let res = await fetch("/add-blog", {
+      await fetch("/add-blog", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,42 +31,16 @@ const Create = () => {
           body: data.body,
         }),
       });
-      await res.json().then(() => {
-        setData({
-          name: "",
-          author: "",
-          body: "",
-        });
+      setData({
+        name: "",
+        author: "",
+        body: "",
       });
+      navigate("/home");
     } catch (err) {
       console.log(err);
     }
   };
-
-  // const addNewBlog = (e) => {
-  //   e.preventDefault();
-
-  //   fetch("/add-blog", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       title: data.name,
-  //       author: data.author,
-  //       body: data.body,
-  //     }),
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setData({
-  //         name: "",
-  //         author: "",
-  //         body: "",
-  //       });
-  //       navigate("/home");
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
 
   return (
     <div className="container">

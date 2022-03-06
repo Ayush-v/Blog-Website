@@ -10,7 +10,6 @@ const Home = () => {
         return result.json();
       })
       .then((data) => {
-        // console.log(data);
         setBlogs(data);
       })
       .catch((err) => {
